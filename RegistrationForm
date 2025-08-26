@@ -1,0 +1,49 @@
+import { TextField,Button } from '@mui/material';
+import { useState } from 'react';
+
+function RegistrationForm(){
+    function handleSubmit(event){
+        event.preventDefault();
+        if(!fullName){
+            alert('please fill all required fields.');
+            return;
+        }
+        alert("Successfullyn submitted: \n"+
+            "Full Name: "+fullName
+        );
+        setFullName('');
+    }
+
+    function handleReset(){
+        setFullName('');
+    }
+    const [fullName, setFullName] = useState(' ');
+
+    return(
+        <div>
+            <form onSubmit={handleSubmit} onReset={handleReset}>
+                <TextField 
+                label="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+                fullWidth
+                margin='normal'
+                />
+                <Button 
+                type="submit"
+                variant="contained"
+                color="primary"
+                >Submit</Button>
+                <Button 
+                type="reset"
+                variant="outlined"
+                color="secondary"
+                >Reset</Button>
+            </form>
+        </div>
+    )
+    
+}
+
+export default RegistrationForm
